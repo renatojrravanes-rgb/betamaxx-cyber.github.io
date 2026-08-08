@@ -1233,3 +1233,42 @@ main, footer { position: relative; z-index: 1; }
   .hero-copy:hover h1, .terminal:hover::after, .portrait-card:hover::before,
   .primary-button:hover::after, .secondary-button:hover::after, .book-call-trigger:hover::after, .social-link:hover::after { animation: none !important; }
 }
+
+/* =========================================================
+   Gmail CTA visibility fix — booking modal + direct Gmail CTA
+   ========================================================= */
+.booking-actions .gmail-trigger,
+.gmail-direct {
+  appearance: none;
+  border: 1px solid #4e8cff !important;
+  background: #4e8cff !important;
+  color: #ffffff !important;
+  font-family: var(--mono);
+  font-weight: 800;
+  letter-spacing: .10em;
+  text-shadow: 0 1px 0 rgba(0,0,0,.22) !important;
+  box-shadow:
+    0 0 0 1px rgba(78,140,255,.16),
+    0 0 18px rgba(78,140,255,.30),
+    inset 0 0 14px rgba(255,255,255,.08);
+  opacity: 1 !important;
+}
+
+.booking-actions .gmail-trigger:hover,
+.gmail-direct:hover {
+  border-color: #a9c7ff !important;
+  background: #6d9fff !important;
+  color: #ffffff !important;
+  transform: translateY(-5px) scale(1.035);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.22),
+    0 0 24px rgba(78,140,255,.55),
+    0 0 46px rgba(78,140,255,.24),
+    0 12px 26px rgba(0,0,0,.30);
+}
+
+.booking-actions .gmail-trigger:focus-visible,
+.gmail-direct:focus-visible {
+  outline: 2px solid #dce9ff;
+  outline-offset: 4px;
+}
