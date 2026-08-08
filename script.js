@@ -163,51 +163,113 @@ gmailTrigger?.addEventListener('click', () => {
   window.open(gmail.toString(), '_blank', 'noopener');
 });
 
-// Subtle neon cursor aura for desktop/fine-pointer devices.
-// The normal cursor stays visible; this only adds a soft trailing glow.
-const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// High-visibility cyber cursor system for desktop/fine-pointer devices.
+// The browser cursor remains visible; these are additional visual effects.
+const finePointerFX = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+const reducedMotionFX = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-if (finePointer && !reducedMotion) {
+if (finePointerFX && !reducedMotionFX) {
   const cursorGlow = document.createElement('div');
   cursorGlow.className = 'cursor-glow';
   cursorGlow.setAttribute('aria-hidden', 'true');
-  document.body.appendChild(cursorGlow);
 
-  let targetX = -200;
-  let targetY = -200;
-  let currentX = -200;
-  let currentY = -200;
-  let animationFrame = null;
+  const cursorCore = document.createElement('div');
+  cursorCore.className = 'cursor-core';
+  cursorCore.setAttribute('aria-hidden', 'true');
 
-  const renderGlow = () => {
-    currentX += (targetX - currentX) * 0.22;
-    currentY += (targetY - currentY) * 0.22;
-    cursorGlow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
-    animationFrame = requestAnimationFrame(renderGlow);
+  const cursorDot = document.createElement('div');
+  cursorDot.className = 'cursor-dot';
+  cursorDot.setAttribute('aria-hidden', 'true');
+
+  const cursorAmbient = document.createElement('div');
+  cursorAmbient.className = 'cursor-ambient';
+  cursorAmbient.setAttribute('aria-hidden', 'true');
+
+  document.body.append(cursorAmbient, cursorGlow, cursorCore, cursorDot);
+
+  let targetX = -300;
+  let targetY = -300;
+  let glowX = -300;
+  let glowY = -300;
+  let lastTrailX = -300;
+  let lastTrailY = -300;
+  let lastTrailTime = 0;
+
+  const isInteractive = (target) => Boolean(target?.closest?.(
+    'a, button, input, select, textarea, video, .service-card, .cert-card, .feedback-card, .skill-column, .education-grid article, .capability-grid article, .info-panel, .portrait-card, .terminal, .job, .tag-row span'
+  ));
+
+  const animateGlow = () => {
+    glowX += (targetX - glowX) * 0.16;
+    glowY += (targetY - glowY) * 0.16;
+    cursorGlow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0) translate(-50%, -50%)`;
+    requestAnimationFrame(animateGlow);
+  };
+  requestAnimationFrame(animateGlow);
+
+  const makeTrail = (x, y, now) => {
+    const distance = Math.hypot(x - lastTrailX, y - lastTrailY);
+    if (distance < 18 || now - lastTrailTime < 24) return;
+    lastTrailX = x;
+    lastTrailY = y;
+    lastTrailTime = now;
+    const trail = document.createElement('span');
+    trail.className = 'cursor-trail-dot';
+    trail.style.left = `${x}px`;
+    trail.style.top = `${y}px`;
+    document.body.appendChild(trail);
+    trail.addEventListener('animationend', () => trail.remove(), { once: true });
   };
 
   document.addEventListener('mousemove', (event) => {
     targetX = event.clientX;
     targetY = event.clientY;
+
+    cursorCore.style.left = `${targetX}px`;
+    cursorCore.style.top = `${targetY}px`;
+    cursorDot.style.left = `${targetX}px`;
+    cursorDot.style.top = `${targetY}px`;
+    cursorAmbient.style.setProperty('--ambient-x', `${targetX}px`);
+    cursorAmbient.style.setProperty('--ambient-y', `${targetY}px`);
+
     cursorGlow.classList.add('visible');
-    if (!animationFrame) animationFrame = requestAnimationFrame(renderGlow);
+    cursorCore.classList.add('visible');
+    cursorDot.classList.add('visible');
+    cursorAmbient.classList.add('visible');
+
+    const hot = isInteractive(event.target);
+    cursorGlow.classList.toggle('hot', hot);
+    cursorCore.classList.toggle('hot', hot);
+
+    makeTrail(targetX, targetY, performance.now());
   }, { passive: true });
 
   document.addEventListener('mouseover', (event) => {
-    const interactive = event.target.closest(
-      'a, button, input, select, textarea, video, .service-card, .cert-card, .feedback-card, .skill-column, .education-grid article, .capability-grid article, .info-panel, .portrait-card, .terminal'
-    );
-    cursorGlow.classList.toggle('hot', Boolean(interactive));
+    const hot = isInteractive(event.target);
+    cursorGlow.classList.toggle('hot', hot);
+    cursorCore.classList.toggle('hot', hot);
   });
 
-  document.addEventListener('mouseout', (event) => {
-    if (!event.relatedTarget) {
-      cursorGlow.classList.remove('visible', 'hot');
-    }
+  document.addEventListener('mousedown', (event) => {
+    const pulse = document.createElement('span');
+    pulse.className = 'cursor-click-pulse';
+    pulse.style.left = `${event.clientX}px`;
+    pulse.style.top = `${event.clientY}px`;
+    document.body.appendChild(pulse);
+    pulse.addEventListener('animationend', () => pulse.remove(), { once: true });
+  });
+
+  document.addEventListener('mouseleave', () => {
+    cursorGlow.classList.remove('visible', 'hot');
+    cursorCore.classList.remove('visible', 'hot');
+    cursorDot.classList.remove('visible');
+    cursorAmbient.classList.remove('visible');
   });
 
   window.addEventListener('blur', () => {
     cursorGlow.classList.remove('visible', 'hot');
+    cursorCore.classList.remove('visible', 'hot');
+    cursorDot.classList.remove('visible');
+    cursorAmbient.classList.remove('visible');
   });
 }

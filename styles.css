@@ -609,3 +609,627 @@ body.modal-open { overflow: hidden; }
   .nav-cta:hover,
   .video-frame:hover { transform: none; }
 }
+
+/* =========================================================
+   Visibility pass — stronger booking CTA + clearer interactions
+   ========================================================= */
+
+/* BOOK A CALL: deliberately high contrast everywhere it appears */
+.book-call-trigger,
+.nav-links .book-call-trigger,
+button.book-call-trigger,
+button.nav-cta.book-call-trigger {
+  appearance: none;
+  border: 1px solid #00ff41 !important;
+  background: #00ff41 !important;
+  color: #050805 !important;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: .12em;
+  text-shadow: none !important;
+  box-shadow:
+    0 0 0 1px rgba(0,255,65,.12),
+    0 0 18px rgba(0,255,65,.22),
+    inset 0 0 12px rgba(255,255,255,.08);
+  opacity: 1 !important;
+}
+
+.book-call-trigger:hover,
+.nav-links .book-call-trigger:hover,
+button.book-call-trigger:hover,
+button.nav-cta.book-call-trigger:hover {
+  background: #f4fff6 !important;
+  color: #050805 !important;
+  border-color: #f4fff6 !important;
+  transform: translateY(-4px) scale(1.025);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.24),
+    0 0 16px rgba(255,255,255,.28),
+    0 0 34px rgba(0,255,65,.52),
+    0 10px 24px rgba(0,0,0,.32);
+}
+
+.book-call-trigger:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+
+/* More visible but still clean button interactions */
+.primary-button:hover,
+.secondary-button:hover,
+.nav-cta:hover,
+.social-link:hover {
+  transform: translateY(-4px) scale(1.018);
+}
+
+.primary-button:hover,
+.nav-cta:hover {
+  box-shadow:
+    0 0 0 1px rgba(0,255,65,.30),
+    0 0 20px rgba(0,255,65,.32),
+    0 0 42px rgba(0,255,65,.16),
+    0 10px 24px rgba(0,0,0,.28);
+}
+
+.secondary-button:hover {
+  color: var(--white);
+  background: rgba(0,255,65,.10);
+  border-color: rgba(0,255,65,.88);
+  box-shadow:
+    inset 0 0 22px rgba(0,255,65,.08),
+    0 0 18px rgba(0,255,65,.24),
+    0 8px 22px rgba(0,0,0,.22);
+}
+
+/* Stronger card hover: easier to notice without becoming flashy */
+.service-card:hover,
+.capability-grid article:hover,
+.skill-column:hover,
+.education-grid article:hover,
+.cert-card:hover,
+.feedback-card:hover,
+.info-panel:hover {
+  transform: translateY(-6px);
+  background: #181e18;
+  box-shadow:
+    inset 0 0 0 1px rgba(0,255,65,.52),
+    0 0 24px rgba(0,255,65,.12),
+    0 14px 34px rgba(0,0,0,.30);
+}
+
+.feedback-card.accent-blue:hover,
+.info-panel.blue-head:hover {
+  box-shadow:
+    inset 0 0 0 1px rgba(78,140,255,.68),
+    0 0 24px rgba(78,140,255,.16),
+    0 14px 34px rgba(0,0,0,.30);
+}
+
+.feedback-card.accent-orange:hover {
+  box-shadow:
+    inset 0 0 0 1px rgba(255,155,72,.70),
+    0 0 24px rgba(255,155,72,.14),
+    0 14px 34px rgba(0,0,0,.30);
+}
+
+.job:hover {
+  padding-left: 14px;
+  background: linear-gradient(90deg, rgba(0,255,65,.085), rgba(0,255,65,.018) 55%, transparent 82%);
+  border-top-color: rgba(0,255,65,.78);
+  box-shadow: inset 3px 0 0 rgba(0,255,65,.72);
+}
+
+.portrait-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0,255,65,.90);
+  box-shadow:
+    0 0 0 1px rgba(0,255,65,.14),
+    0 0 30px rgba(0,255,65,.22),
+    0 14px 30px rgba(0,0,0,.24);
+}
+
+.portrait-card:hover img {
+  transform: scale(1.045);
+}
+
+.terminal:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0,255,65,.76);
+  box-shadow:
+    0 0 0 1px rgba(0,255,65,.10),
+    0 0 26px rgba(0,255,65,.16),
+    0 12px 30px rgba(0,0,0,.26);
+}
+
+.social-link:hover {
+  color: var(--white);
+  border-color: rgba(0,255,65,.90);
+  background: rgba(0,255,65,.10);
+  box-shadow: 0 0 22px rgba(0,255,65,.24);
+}
+
+/* Hero reacts more clearly to pointer presence */
+.hero-copy:hover h1 {
+  transform: translateX(4px);
+  text-shadow:
+    0 0 14px rgba(0,255,65,.20),
+    0 0 38px rgba(0,255,65,.10);
+}
+
+/* Brighter mouse aura with a crisp center ring */
+.cursor-glow {
+  --glow-size: 150px;
+  background:
+    radial-gradient(circle,
+      rgba(244,255,246,.20) 0 2%,
+      rgba(0,255,65,.32) 3%,
+      rgba(0,255,65,.16) 16%,
+      rgba(78,140,255,.09) 34%,
+      transparent 70%);
+  filter: blur(2px);
+  mix-blend-mode: screen;
+}
+
+.cursor-glow::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 13px;
+  height: 13px;
+  border: 1px solid rgba(0,255,65,.96);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 8px rgba(0,255,65,.82),
+    0 0 18px rgba(0,255,65,.42);
+}
+
+.cursor-glow.visible { opacity: .96; }
+.cursor-glow.hot {
+  --glow-size: 190px;
+  opacity: 1;
+  filter: blur(1px);
+}
+.cursor-glow.hot::before {
+  width: 18px;
+  height: 18px;
+  border-color: rgba(244,255,246,1);
+  box-shadow:
+    0 0 10px rgba(255,255,255,.72),
+    0 0 24px rgba(0,255,65,.72);
+}
+
+@media (max-width: 960px) {
+  .nav-links .book-call-trigger {
+    margin: 12px;
+    padding: 13px 16px;
+    width: calc(100% - 24px);
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-call-trigger:hover,
+  .primary-button:hover,
+  .secondary-button:hover,
+  .nav-cta:hover,
+  .social-link:hover,
+  .portrait-card:hover,
+  .terminal:hover,
+  .hero-copy:hover h1 { transform: none; }
+}
+
+
+/* =========================================================
+   CYBER FX V2 — stronger visual feedback + visible cursor system
+   ========================================================= */
+
+/* Fine CRT texture over the page. Kept faint enough for readability. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  pointer-events: none;
+  opacity: .18;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(0,255,65,.00) 0,
+      rgba(0,255,65,.00) 3px,
+      rgba(0,255,65,.045) 4px
+    );
+  mix-blend-mode: screen;
+  animation: crtDrift 12s linear infinite;
+}
+@keyframes crtDrift { to { transform: translateY(8px); } }
+
+/* Sticky navigation gets a moving scanner accent. */
+.site-header { overflow: hidden; }
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: -35%;
+  bottom: -1px;
+  width: 30%;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(0,255,65,.95), rgba(78,140,255,.7), transparent);
+  filter: drop-shadow(0 0 5px rgba(0,255,65,.75));
+  animation: navScanner 5.5s ease-in-out infinite;
+}
+@keyframes navScanner {
+  0%, 12% { transform: translateX(0); opacity: 0; }
+  25% { opacity: .95; }
+  72% { opacity: .95; }
+  88%, 100% { transform: translateX(455%); opacity: 0; }
+}
+
+/* Stronger cyber title feedback. */
+.hero h1 {
+  transition: transform .3s ease, text-shadow .3s ease, filter .3s ease;
+  text-shadow: 0 0 1px rgba(244,247,244,.35);
+}
+.hero-copy:hover h1 {
+  animation: titleGlitch .7s steps(2, end) 1;
+  filter: brightness(1.08);
+  text-shadow:
+    2px 0 0 rgba(0,255,65,.48),
+    -2px 0 0 rgba(78,140,255,.32),
+    0 0 20px rgba(0,255,65,.25),
+    0 0 46px rgba(0,255,65,.13);
+}
+@keyframes titleGlitch {
+  0%, 100% { transform: translateX(4px) skewX(0deg); }
+  15% { transform: translateX(1px) skewX(-1deg); }
+  28% { transform: translateX(7px) skewX(.8deg); }
+  42% { transform: translateX(3px) skewX(-.5deg); }
+  60% { transform: translateX(6px) skewX(.4deg); }
+  76% { transform: translateX(2px); }
+}
+
+.section-title h2 {
+  transition: color .22s ease, text-shadow .22s ease, transform .22s ease;
+}
+.section-title:hover h2 {
+  color: #fff;
+  transform: translateX(6px);
+  text-shadow: 0 0 16px rgba(0,255,65,.28), 0 0 34px rgba(78,140,255,.08);
+}
+.section-title > span {
+  transition: text-shadow .22s ease, transform .22s ease;
+}
+.section-title:hover > span {
+  transform: scale(1.12);
+  text-shadow: 0 0 10px rgba(0,255,65,.8);
+}
+
+/* Clearly visible sweep on cards and panels. */
+.service-card,
+.capability-grid article,
+.skill-column,
+.education-grid article,
+.cert-card,
+.feedback-card,
+.info-panel,
+.social-link,
+.primary-button,
+.secondary-button,
+.book-call-trigger {
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before,
+.capability-grid article::before,
+.skill-column::before,
+.education-grid article::before,
+.cert-card::before,
+.feedback-card::before,
+.info-panel::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: -25%;
+  bottom: -25%;
+  left: -55%;
+  width: 24%;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(90deg, transparent, rgba(0,255,65,.11), rgba(255,255,255,.07), transparent);
+  transform: skewX(-16deg);
+  transition: left .65s ease, opacity .25s ease;
+}
+.service-card:hover::before,
+.capability-grid article:hover::before,
+.skill-column:hover::before,
+.education-grid article:hover::before,
+.cert-card:hover::before,
+.feedback-card:hover::before,
+.info-panel:hover::before {
+  left: 125%;
+  opacity: 1;
+}
+.service-card > *,
+.capability-grid article > *,
+.skill-column > *,
+.education-grid article > *,
+.cert-card > *,
+.feedback-card > *,
+.info-panel > * { position: relative; z-index: 1; }
+
+/* Slightly bigger hover movement + brighter edges. */
+.service-card:hover,
+.capability-grid article:hover,
+.skill-column:hover,
+.education-grid article:hover,
+.cert-card:hover,
+.feedback-card:hover,
+.info-panel:hover {
+  transform: translateY(-9px) scale(1.008);
+  border-color: rgba(0,255,65,.78);
+  box-shadow:
+    inset 0 0 0 1px rgba(0,255,65,.66),
+    inset 0 0 30px rgba(0,255,65,.035),
+    0 0 25px rgba(0,255,65,.18),
+    0 18px 42px rgba(0,0,0,.38);
+}
+.feedback-card.accent-blue:hover,
+.info-panel.blue-head:hover {
+  box-shadow:
+    inset 0 0 0 1px rgba(78,140,255,.78),
+    inset 0 0 28px rgba(78,140,255,.045),
+    0 0 28px rgba(78,140,255,.24),
+    0 18px 42px rgba(0,0,0,.38);
+}
+.feedback-card.accent-orange:hover {
+  box-shadow:
+    inset 0 0 0 1px rgba(255,155,72,.8),
+    inset 0 0 28px rgba(255,155,72,.045),
+    0 0 28px rgba(255,155,72,.22),
+    0 18px 42px rgba(0,0,0,.38);
+}
+
+/* Terminal scan beam on hover. */
+.terminal { position: relative; transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease; }
+.terminal::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  top: -14%;
+  height: 46px;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(0,255,65,.12), rgba(0,255,65,.03), transparent);
+  border-bottom: 1px solid rgba(0,255,65,.2);
+  filter: drop-shadow(0 0 6px rgba(0,255,65,.12));
+}
+.terminal:hover::after { opacity: 1; animation: terminalSweep 1.45s ease-out 1; }
+@keyframes terminalSweep { from { top: -14%; } to { top: 105%; } }
+.terminal:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0,255,65,.9);
+  box-shadow:
+    0 0 0 1px rgba(0,255,65,.14),
+    0 0 34px rgba(0,255,65,.22),
+    0 16px 38px rgba(0,0,0,.34);
+}
+
+/* More obvious button / social feedback. */
+.primary-button::after,
+.secondary-button::after,
+.book-call-trigger::after,
+.social-link::after {
+  content: "";
+  position: absolute;
+  top: -35%;
+  bottom: -35%;
+  left: -60%;
+  width: 28%;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+  transform: skewX(-18deg);
+}
+.primary-button:hover::after,
+.secondary-button:hover::after,
+.book-call-trigger:hover::after,
+.social-link:hover::after {
+  opacity: .8;
+  animation: buttonSweep .62s ease-out 1;
+}
+@keyframes buttonSweep { to { left: 135%; } }
+
+.primary-button:hover,
+.secondary-button:hover,
+.social-link:hover {
+  transform: translateY(-5px) scale(1.035);
+}
+.social-link:hover svg {
+  filter: drop-shadow(0 0 6px rgba(0,255,65,.9));
+  transform: scale(1.09);
+}
+.social-link svg { transition: transform .2s ease, filter .2s ease; }
+
+.tag-row span { transition: transform .2s ease, background .2s ease, box-shadow .2s ease, color .2s ease; }
+.tag-row span:hover {
+  transform: translateY(-3px);
+  color: #fff;
+  background: rgba(0,255,65,.08);
+  box-shadow: 0 0 16px rgba(0,255,65,.25), inset 0 0 12px rgba(0,255,65,.05);
+}
+
+/* Portrait gets a scanning highlight. */
+.portrait-card::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  left: -35%;
+  top: 0;
+  width: 24%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(0,255,65,.12), rgba(255,255,255,.12), transparent);
+  transform: skewX(-12deg);
+}
+.portrait-card:hover::before { opacity: 1; animation: portraitSweep .9s ease-out 1; }
+@keyframes portraitSweep { to { left: 125%; } }
+
+/* =========================================================
+   High-visibility mouse FX
+   ========================================================= */
+.cursor-glow {
+  --glow-size: 250px !important;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: var(--glow-size);
+  height: var(--glow-size);
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0;
+  border-radius: 50%;
+  will-change: transform, opacity, width, height;
+  background:
+    radial-gradient(circle,
+      rgba(255,255,255,.22) 0 2%,
+      rgba(0,255,65,.45) 3%,
+      rgba(0,255,65,.22) 10%,
+      rgba(0,255,65,.11) 28%,
+      rgba(78,140,255,.09) 43%,
+      transparent 72%) !important;
+  filter: blur(1px) !important;
+  mix-blend-mode: screen;
+  transition: width .18s ease, height .18s ease, opacity .18s ease;
+}
+.cursor-glow.visible { opacity: 1 !important; }
+.cursor-glow.hot {
+  --glow-size: 330px !important;
+  opacity: 1 !important;
+  background:
+    radial-gradient(circle,
+      rgba(255,255,255,.32) 0 2%,
+      rgba(0,255,65,.55) 3%,
+      rgba(0,255,65,.25) 13%,
+      rgba(78,140,255,.14) 36%,
+      transparent 72%) !important;
+}
+
+.cursor-core {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10002;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+  border: 2px solid rgba(0,255,65,.98);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  box-shadow:
+    0 0 8px rgba(0,255,65,.95),
+    0 0 20px rgba(0,255,65,.65),
+    inset 0 0 9px rgba(0,255,65,.2);
+  transition: width .16s ease, height .16s ease, border-color .16s ease, opacity .12s ease;
+  mix-blend-mode: screen;
+}
+.cursor-core::before,
+.cursor-core::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: rgba(0,255,65,.95);
+  box-shadow: 0 0 7px rgba(0,255,65,.9);
+  transform: translate(-50%, -50%);
+}
+.cursor-core::before { width: 42px; height: 1px; }
+.cursor-core::after { width: 1px; height: 42px; }
+.cursor-core.visible { opacity: .95; }
+.cursor-core.hot {
+  width: 40px;
+  height: 40px;
+  border-color: rgba(255,255,255,1);
+  box-shadow:
+    0 0 10px rgba(255,255,255,.7),
+    0 0 27px rgba(0,255,65,.82),
+    0 0 52px rgba(78,140,255,.22);
+}
+
+.cursor-dot {
+  position: fixed;
+  z-index: 10003;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: #effff2;
+  box-shadow: 0 0 7px #00ff41, 0 0 14px rgba(0,255,65,.8);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+.cursor-dot.visible { opacity: 1; }
+
+.cursor-trail-dot {
+  position: fixed;
+  z-index: 10001;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: rgba(0,255,65,.7);
+  box-shadow: 0 0 10px rgba(0,255,65,.85), 0 0 20px rgba(78,140,255,.25);
+  transform: translate(-50%, -50%) scale(1);
+  animation: trailFade .58s ease-out forwards;
+}
+@keyframes trailFade {
+  0% { opacity: .85; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(.08); }
+}
+
+.cursor-click-pulse {
+  position: fixed;
+  z-index: 10000;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  pointer-events: none;
+  border: 2px solid rgba(0,255,65,.95);
+  transform: translate(-50%, -50%) scale(.3);
+  box-shadow: 0 0 14px rgba(0,255,65,.55);
+  animation: cursorPulse .55s ease-out forwards;
+}
+@keyframes cursorPulse {
+  from { opacity: 1; transform: translate(-50%, -50%) scale(.3); }
+  to { opacity: 0; transform: translate(-50%, -50%) scale(4.2); }
+}
+
+/* Moving ambient point light centered on pointer position. */
+.cursor-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(420px circle at var(--ambient-x, 50%) var(--ambient-y, 50%), rgba(0,255,65,.055), rgba(78,140,255,.025) 36%, transparent 68%);
+  transition: opacity .25s ease;
+}
+.cursor-ambient.visible { opacity: 1; }
+main, footer { position: relative; z-index: 1; }
+
+@media (hover: none), (pointer: coarse) {
+  .cursor-glow, .cursor-core, .cursor-dot, .cursor-trail-dot, .cursor-click-pulse, .cursor-ambient { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after, .site-header::after { animation: none !important; }
+  .cursor-glow, .cursor-core, .cursor-dot, .cursor-trail-dot, .cursor-click-pulse, .cursor-ambient { display: none !important; }
+  .hero-copy:hover h1, .terminal:hover::after, .portrait-card:hover::before,
+  .primary-button:hover::after, .secondary-button:hover::after, .book-call-trigger:hover::after, .social-link:hover::after { animation: none !important; }
+}
