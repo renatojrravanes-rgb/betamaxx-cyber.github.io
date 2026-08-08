@@ -1,20 +1,22 @@
 # Renato Jr. Ravanes Portfolio
 
-A dependency-free portfolio prepared for GitHub Pages.
+Static GitHub Pages portfolio. No build step is required.
 
-## Publish with GitHub Pages
+## Publish / update
 
-1. Create a new public GitHub repository.
-2. Upload everything in this folder to the repository root.
-3. Open **Settings → Pages**.
-4. Under **Build and deployment**, choose **Deploy from a branch**.
-5. Select the `main` branch and `/ (root)`, then save.
+Upload the **contents of this folder** to the repository branch used by GitHub Pages. Keep `index.html` in the repository root.
 
-The website uses only HTML, CSS, JavaScript, and one local profile image. No npm build is required.
+GitHub Pages settings:
+- Source: **Deploy from a branch**
+- Branch: **main**
+- Folder: **/(root)**
 
-## Edit content
+## Resume and certificates
+- Resume PDF: `assets/Renato_Jr_Ravanes_Resume.pdf`
+- Certificate PDFs: `assets/certificates/`
 
-- Update text and links in `index.html`.
-- Update colors and layout in `styles.css`.
-- Replace `assets/profile.webp` with another image using the same filename.
-- Replace the Work Samples placeholder once portfolio materials are available.
+The site includes a **Download Resume** button and a **Certifications** section with links to the source PDFs.
+
+
+Additional pages:
+- video-introduction.html — dedicated video introduction page
