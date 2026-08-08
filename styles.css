@@ -294,3 +294,318 @@ button { font: inherit; }
   .page-heading h1 { font-size: clamp(42px, 16vw, 72px); }
   .video-chrome { padding: 10px 12px; }
 }
+
+
+/* Booking / hire modal */
+button.primary-button, button.secondary-button, button.nav-cta { font-family: inherit; cursor: pointer; }
+button.primary-button, button.secondary-button { appearance: none; }
+button.nav-cta { border: 0; }
+.booking-modal { position: fixed; inset: 0; z-index: 999; display: none; place-items: center; padding: 22px; }
+.booking-modal.open { display: grid; }
+.booking-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.78); backdrop-filter: blur(6px); }
+.booking-dialog { position: relative; z-index: 1; width: min(720px, 100%); max-height: min(90vh, 820px); overflow: auto; border: 1px solid var(--border); background: var(--bg); box-shadow: 0 30px 90px rgba(0,0,0,.62), 0 0 45px rgba(0,255,65,.05); }
+.booking-topbar { position: sticky; top: 0; z-index: 2; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 11px 14px; border-bottom: 1px solid var(--border); background: rgba(8,10,8,.97); color: var(--muted); font-size: 9px; letter-spacing: .11em; }
+.booking-close { width: 32px; height: 32px; border: 1px solid var(--border); background: transparent; color: var(--muted); font: inherit; font-size: 18px; cursor: pointer; }
+.booking-close:hover { border-color: var(--green); color: var(--green); }
+.booking-body { padding: 28px; }
+.booking-heading { margin-bottom: 24px; }
+.booking-heading h2 { margin: 5px 0 10px; color: var(--white); font-family: var(--display); font-size: clamp(38px, 7vw, 64px); font-weight: 400; line-height: 1; }
+.booking-heading > p:last-child { max-width: 580px; color: var(--muted); font-size: 10px; line-height: 1.75; }
+.booking-heading strong { color: var(--text); }
+.booking-form { display: grid; gap: 16px; }
+.booking-form label { display: grid; gap: 7px; }
+.booking-form label > span { color: var(--green); font-size: 9px; letter-spacing: .11em; }
+.booking-form input, .booking-form select, .booking-form textarea { width: 100%; border: 1px solid var(--border); border-radius: 0; padding: 12px 13px; background: var(--surface); color: var(--white); font: inherit; font-size: 11px; outline: none; }
+.booking-form input:focus, .booking-form select:focus, .booking-form textarea:focus { border-color: var(--green); box-shadow: 0 0 0 1px rgba(0,255,65,.08); }
+.booking-form textarea { resize: vertical; min-height: 100px; }
+.booking-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.booking-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.booking-submit { border: 1px solid var(--green); }
+.booking-note { color: var(--faint); font-size: 9px; line-height: 1.6; }
+body.modal-open { overflow: hidden; }
+.nav-cta.book-call-trigger { color: var(--bg); }
+
+@media (max-width: 640px) {
+  .booking-modal { padding: 10px; }
+  .booking-body { padding: 20px; }
+  .booking-row { grid-template-columns: 1fr; }
+  .booking-actions > * { width: 100%; text-align: center; }
+}
+
+
+/* Social profile links */
+.social-links { display: flex; flex-wrap: wrap; gap: 8px; margin: -12px 0 30px; }
+.social-link { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 7px 10px; border: 1px solid var(--border); background: rgba(16,19,16,.72); color: var(--muted); text-decoration: none; font-size: 9px; letter-spacing: .07em; transition: color .2s ease, border-color .2s ease, background .2s ease, transform .2s ease; }
+.social-link:hover { color: var(--green); border-color: var(--green); background: rgba(0,255,65,.055); transform: translateY(-2px); }
+.social-link svg { width: 18px; height: 18px; flex: 0 0 18px; fill: currentColor; }
+.social-link .oj-icon rect { fill: none; stroke: currentColor; stroke-width: 1.7; }
+.social-link .oj-icon text { fill: currentColor; font-family: var(--mono); font-size: 7.6px; font-weight: 700; letter-spacing: -.4px; }
+.contact-socials { margin: 18px 0 0; }
+@media (max-width: 640px) {
+  .social-links { gap: 7px; }
+  .social-link { padding: 8px; }
+  .social-link span { display: none; }
+  .social-link svg { width: 20px; height: 20px; flex-basis: 20px; }
+  .contact-socials { margin-top: 16px; }
+}
+
+/* ---------------------------------------------------------
+   Subtle interaction layer — terminal/neon micro-effects
+   --------------------------------------------------------- */
+
+/* Soft hover states across the portfolio */
+.primary-button,
+.secondary-button,
+.nav-cta,
+.social-link,
+.menu-button,
+.booking-close,
+.cert-card,
+.feedback-card,
+.service-card,
+.capability-grid article,
+.skill-column,
+.education-grid article,
+.info-panel,
+.video-frame,
+.portrait-card,
+.terminal {
+  transition:
+    transform .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease,
+    background .22s ease,
+    color .22s ease;
+}
+
+.primary-button,
+.secondary-button,
+.nav-cta {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.primary-button::after,
+.nav-cta::after {
+  content: "";
+  position: absolute;
+  inset: -35% auto -35% -34%;
+  width: 24%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.34), transparent);
+  transform: skewX(-18deg) translateX(-220%);
+  transition: transform .5s ease;
+  z-index: -1;
+}
+
+.primary-button:hover,
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(0,255,65,.17);
+}
+
+.primary-button:hover::after,
+.nav-cta:hover::after {
+  transform: skewX(-18deg) translateX(720%);
+}
+
+.secondary-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--green);
+  box-shadow: inset 0 0 18px rgba(0,255,65,.045), 0 0 16px rgba(0,255,65,.08);
+}
+
+/* Thin neon line under navigation items */
+.nav-links > a:not(.nav-cta) {
+  position: relative;
+}
+
+.nav-links > a:not(.nav-cta)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -7px;
+  height: 1px;
+  background: var(--green);
+  box-shadow: 0 0 8px rgba(0,255,65,.5);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .2s ease;
+}
+
+.nav-links > a:not(.nav-cta):hover::after,
+.nav-links > a:not(.nav-cta).active::after {
+  transform: scaleX(1);
+}
+
+/* Cards stay restrained: tiny lift + inner neon edge */
+.service-card:hover,
+.capability-grid article:hover,
+.skill-column:hover,
+.education-grid article:hover,
+.cert-card:hover,
+.feedback-card:hover,
+.info-panel:hover {
+  transform: translateY(-3px);
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 1px rgba(0,255,65,.24), 0 8px 26px rgba(0,0,0,.16);
+}
+
+.feedback-card.accent-blue:hover,
+.info-panel.blue-head:hover {
+  box-shadow: inset 0 0 0 1px rgba(78,140,255,.32), 0 8px 26px rgba(0,0,0,.16);
+}
+
+.feedback-card.accent-orange:hover {
+  box-shadow: inset 0 0 0 1px rgba(255,155,72,.30), 0 8px 26px rgba(0,0,0,.16);
+}
+
+.job {
+  transition: background .22s ease, padding-left .22s ease, border-color .22s ease;
+}
+
+.job:hover {
+  padding-left: 10px;
+  background: linear-gradient(90deg, rgba(0,255,65,.035), transparent 55%);
+  border-top-color: rgba(0,255,65,.34);
+}
+
+/* Portrait gets a very small cinematic push-in */
+.portrait-card:hover {
+  border-color: rgba(0,255,65,.48);
+  box-shadow: 0 0 28px rgba(0,255,65,.07);
+}
+
+.portrait-card img {
+  transition: transform .55s cubic-bezier(.2,.7,.2,1), filter .3s ease;
+}
+
+.portrait-card:hover img {
+  transform: scale(1.025);
+  filter: grayscale(.08) contrast(1.07);
+}
+
+.tag-row span {
+  transition: background .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.tag-row span:hover {
+  transform: translateY(-2px);
+  background: rgba(0,255,65,.06);
+  box-shadow: 0 0 14px rgba(0,255,65,.08);
+}
+
+/* Terminal glow + a one-pass scan line on hover */
+.terminal {
+  position: relative;
+}
+
+.terminal::after {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  top: -2px;
+  height: 1px;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(90deg, transparent 4%, rgba(0,255,65,.75) 50%, transparent 96%);
+  box-shadow: 0 0 10px rgba(0,255,65,.35);
+}
+
+.terminal:hover {
+  border-color: rgba(0,255,65,.42);
+  box-shadow: 0 0 26px rgba(0,255,65,.055);
+}
+
+.terminal:hover::after {
+  opacity: .5;
+  animation: terminal-scan 1.35s ease-out 1;
+}
+
+@keyframes terminal-scan {
+  from { top: 40px; opacity: 0; }
+  15% { opacity: .52; }
+  to { top: calc(100% - 2px); opacity: 0; }
+}
+
+.video-frame:hover {
+  transform: translateY(-2px);
+  border-color: rgba(78,140,255,.42);
+  box-shadow: inset 0 0 0 1px rgba(0,255,65,.04), 0 0 34px rgba(78,140,255,.07);
+}
+
+.social-link:hover {
+  box-shadow: 0 0 16px rgba(0,255,65,.09);
+}
+
+/* Keep headings crisp, but let the hero react softly */
+.hero h1 {
+  transition: text-shadow .3s ease, transform .3s ease;
+}
+
+.hero-copy:hover h1 {
+  text-shadow: 0 0 26px rgba(0,255,65,.065);
+}
+
+/* Cursor aura: normal system cursor remains visible */
+.cursor-glow {
+  --glow-size: 116px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--glow-size);
+  height: var(--glow-size);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0;
+  transform: translate3d(-200px, -200px, 0) translate(-50%, -50%);
+  background:
+    radial-gradient(circle,
+      rgba(0,255,65,.17) 0%,
+      rgba(0,255,65,.08) 19%,
+      rgba(78,140,255,.035) 40%,
+      transparent 70%);
+  filter: blur(3px);
+  mix-blend-mode: screen;
+  will-change: transform, opacity, width, height;
+  transition: opacity .18s ease, width .18s ease, height .18s ease, filter .18s ease;
+}
+
+.cursor-glow.visible {
+  opacity: .78;
+}
+
+.cursor-glow.hot {
+  --glow-size: 148px;
+  opacity: .95;
+  filter: blur(4px);
+}
+
+/* Don't run pointer effects on touch devices or for reduced-motion users */
+@media (hover: none), (pointer: coarse) {
+  .cursor-glow { display: none !important; }
+  .job:hover { padding-left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-glow { display: none !important; }
+  .terminal:hover::after { animation: none; opacity: 0; }
+  .job:hover { padding-left: 0; }
+  .portrait-card:hover img { transform: none; }
+  .service-card:hover,
+  .capability-grid article:hover,
+  .skill-column:hover,
+  .education-grid article:hover,
+  .cert-card:hover,
+  .feedback-card:hover,
+  .info-panel:hover,
+  .primary-button:hover,
+  .secondary-button:hover,
+  .nav-cta:hover,
+  .video-frame:hover { transform: none; }
+}
