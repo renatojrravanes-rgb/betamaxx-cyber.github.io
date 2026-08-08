@@ -1235,40 +1235,41 @@ main, footer { position: relative; z-index: 1; }
 }
 
 /* =========================================================
-   Gmail CTA visibility fix — booking modal + direct Gmail CTA
+   Gmail CTA — high-contrast terminal green treatment
    ========================================================= */
 .booking-actions .gmail-trigger,
 .gmail-direct {
   appearance: none;
-  border: 1px solid #4e8cff !important;
-  background: #4e8cff !important;
+  border: 1px solid var(--green) !important;
+  background: #080a08 !important;
   color: #ffffff !important;
   font-family: var(--mono);
   font-weight: 800;
   letter-spacing: .10em;
-  text-shadow: 0 1px 0 rgba(0,0,0,.22) !important;
+  text-shadow: 0 0 8px rgba(255,255,255,.08) !important;
   box-shadow:
-    0 0 0 1px rgba(78,140,255,.16),
-    0 0 18px rgba(78,140,255,.30),
-    inset 0 0 14px rgba(255,255,255,.08);
+    0 0 0 1px rgba(0,255,65,.08),
+    0 0 18px rgba(0,255,65,.18),
+    inset 0 0 16px rgba(0,255,65,.03);
   opacity: 1 !important;
 }
 
 .booking-actions .gmail-trigger:hover,
 .gmail-direct:hover {
-  border-color: #a9c7ff !important;
-  background: #6d9fff !important;
-  color: #ffffff !important;
+  border-color: #7cff9c !important;
+  background: var(--green) !important;
+  color: #050805 !important;
+  text-shadow: none !important;
   transform: translateY(-5px) scale(1.035);
   box-shadow:
-    0 0 0 1px rgba(255,255,255,.22),
-    0 0 24px rgba(78,140,255,.55),
-    0 0 46px rgba(78,140,255,.24),
+    0 0 0 1px rgba(124,255,156,.20),
+    0 0 26px rgba(0,255,65,.52),
+    0 0 50px rgba(0,255,65,.22),
     0 12px 26px rgba(0,0,0,.30);
 }
 
 .booking-actions .gmail-trigger:focus-visible,
 .gmail-direct:focus-visible {
-  outline: 2px solid #dce9ff;
+  outline: 2px solid var(--green);
   outline-offset: 4px;
 }
